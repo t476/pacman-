@@ -43,12 +43,13 @@ public class pacmanmove : MonoBehaviour
 
         
     }
-    private bool Valid(Vector2 dir)
+    private bool Valid(Vector2 dir)//射线检测，射线到碰撞器及射线所打到的碰撞器是不是pacman身上那个
+    //用来确定还能继续往某个方向走不会撞墙
     {//记录下当前位置
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);//目的地往外发射线
         return (hit.collider == GetComponent<Collider2D>());
-            //射线检测，射线到碰撞器及射线所打到的碰撞器是不是pacman身上那个
+            
     }
 
 }

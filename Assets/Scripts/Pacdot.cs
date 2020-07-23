@@ -4,7 +4,7 @@ using UnityEngine;
 public class Pacdot : MonoBehaviour
 {
     public bool isSuperDot = false;
-
+//豆子遇吃豆人
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Pacman_0")

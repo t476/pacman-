@@ -12,7 +12,7 @@ public class GoastMove: MonoBehaviour
     //当前在前往哪个路径点途中
     private List<Vector3> Movepoints = new List<Vector3>();//高级三维数组
     private int index = 0;
-    private Vector3 startPos;//巡逻起点、巡逻重点开始施工
+    private Vector3 startPos;//巡逻起点、巡逻终点点开始施工
 
     private void Start()
     {//加载路线
@@ -24,7 +24,6 @@ public class GoastMove: MonoBehaviour
 
     private void FixedUpdate()//方法(函数)
         //This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
-
 //FixedUpdate should be used instead of Update when dealing with Rigidbody.For example when adding a force to a rigidbody,
         //you have to apply the force every fixed frame inside FixedUpdate instead of every frame inside Update.
     {   if (transform.position != Movepoints[index])
@@ -35,8 +34,8 @@ public class GoastMove: MonoBehaviour
                                                            //按键检测且必须先达到上一个dest位置才可以进行新一次目标指令
         }
         else
-        {
-            /* if((index+1) >= Movepoints.Count)//之前报错原因：应该有+1
+        {//疑惑？！为什么我注释掉的代码会在运行过程中产生鬼穿墙而过的效果？！！！这和底下这东西效果一样啊？！
+            /* if((index+1) >= Movepoints.Count)//
              {
                  LoadAPath(MovepointsGos[Random.Range(0, 3)]);
              }
@@ -45,8 +44,10 @@ public class GoastMove: MonoBehaviour
             if (index >= Movepoints.Count)
             {
                 index = 0;
-                LoadAPath(MovepointsGos[Random.Range(0, 3)]);//一轮走过了，重选一条路，那我要是选了和之前一条路。。。。。？？？
+                LoadAPath(MovepointsGos[Random.Range(0, 3)]);//一轮走过了，重选一条路，可以选和之前一条路。
             }
+
+            //获取移动xy的变化
             Vector2 dir = Movepoints[index] - transform.position;
             //把获取到的移动方向设置给动画状态机
             GetComponent<Animator>().SetFloat("Dirx", dir.x);
@@ -54,8 +55,8 @@ public class GoastMove: MonoBehaviour
         }
     }
 
-
-    private void LoadAPath(GameObject go)//写一个函数来加载路线
+    //写一个函数来加载路线
+    private void LoadAPath(GameObject go)
     {
         Movepoints.Clear();
         //加载路线前清空之前的路径
@@ -66,7 +67,7 @@ public class GoastMove: MonoBehaviour
         Movepoints.Add(startPos);
 
     }
-
+    //吃豆人遇鬼碰撞
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Pacman_0")
