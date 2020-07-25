@@ -49,11 +49,13 @@ BUG5:**why？**注释掉的这个重选路径版本goast会穿墙
 BUG6:当前上下文中不存在名称“startCountDownPrefab	  
 这个问题是，我们是之后拖拽赋值的在inspector面板，所以，先创建空物体，而不是直接使用在unity面板里创建的物体   
 
-**未解决的BUG：**
+**解决的BUG：**
 
-1. gamepanel动画并不显示分数变化，似乎text固定住了，但是代码我感觉没错啊  
-2. 玩家还没点start，pacman和ghost就先动了！！！我惊了真的，明明状态是false  
-3. unity报错了。ArgumentOutOfRangeException: Argument is out of range.  
+BUG7.8.9:
+
+gamepanel动画并不显示分数变化，似乎text固定住了，但是代码我感觉没错啊  
+玩家还没点start，pacman和ghost就先动了！！！我惊了真的，明明状态是false  
+unity报错了。ArgumentOutOfRangeException: Argument is out of range.  
    Parameter name: index  
    System.Collections.Generic.List`1[System.Int32].get_Item (Int32 index) (at /Users/builduser/buildslave/mono/build/mcs/class/corlib/System.Collections.Generic/List.cs:635)  
    GoastMove.Start () (at Assets/Scripts/GoastMove.cs:18)  
