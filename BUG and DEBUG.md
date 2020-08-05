@@ -30,8 +30,8 @@ BUG3:运算符“!”无法应用于“Vector2”类型的操作数
 ```
 BUG4:计数错误||不能把会后来会变设为if的判断
 ```/* if((index+1) >= Movepoints.Count)```
-BUG5:**why？**注释掉的这个重选路径版本goast会穿墙 
-
+BUG5:注释掉的这个重选路径版本goast会穿墙   
+因为我的调用路径在index%之前，所以count已经更新为下一次的，如果上一个count＞下一个count就会出现index取余的操作。
 ```
 /*	 if((index+1) >= Movepoints.Count)
          {
@@ -48,15 +48,13 @@ BUG5:**why？**注释掉的这个重选路径版本goast会穿墙
 ```
 BUG6:当前上下文中不存在名称“startCountDownPrefab	  
 这个问题是，我们是之后拖拽赋值的在inspector面板，所以，先创建空物体，而不是直接使用在unity面板里创建的物体   
-
-**解决的BUG：**
-
-BUG7.8.9:
-
+BUG7.8.9:Debug.Log()应用/Debug类  错误关键点：NullReferenceException:Object reference not set to an instance of an object 没有实例化物体  
+原因：大小写错误  
 gamepanel动画并不显示分数变化，似乎text固定住了，但是代码我感觉没错啊  
 玩家还没点start，pacman和ghost就先动了！！！我惊了真的，明明状态是false  
 unity报错了。ArgumentOutOfRangeException: Argument is out of range.  
    Parameter name: index  
    System.Collections.Generic.List`1[System.Int32].get_Item (Int32 index) (at /Users/builduser/buildslave/mono/build/mcs/class/corlib/System.Collections.Generic/List.cs:635)  
    GoastMove.Start () (at Assets/Scripts/GoastMove.cs:18)  
+
 
